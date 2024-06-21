@@ -1,0 +1,11 @@
+/model-results/flat
+/model-results/herd
+flat-tests.d
+herd-tests.d
+
+/hw-tests
+/hw-tests-src
+/gcc-tests
+gcc.excl
+exclude-instructions
+instructions.excl

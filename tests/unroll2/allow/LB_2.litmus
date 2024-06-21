@@ -1,0 +1,25 @@
+RISCV LB_2
+"PodRW Rfe PodRW Rfe"
+Cycle=Rfe PodRW Rfe PodRW
+Relax=
+Safe=Rfe PodRW
+Generator=diy7 (version 7.51+4(dev))
+Prefetch=0:x=F,0:y=W,1:y=F,1:x=W
+Com=Rf Rf
+Orig=PodRW Rfe PodRW Rfe
+{
+0:x6=x; 0:x7=1; 0:x8=y;
+1:x6=y; 1:x7=1; 1:x8=x;
+}
+ P0          | P1          ;
+ lw x5,0(x6) | lw x5,0(x6) ;
+ sw x7,0(x8) | sw x7,0(x8) ;
+ fence rw,rw | fence rw,rw ;
+ addi x7,x7,1  | addi x7,x7,1;
+ lw x15,0(x6) | lw x15,0(x6) ;
+ sw x7,0(x8) | sw x7,0(x8) ; 
+exists
+(0:x5=1 /\ 1:x5=1)
+\/(0:x5=2 /\ 1:x15=1)
+\/(0:x15=1 /\ 1:x5=2)
+\/(0:x15=2 /\ 1:x15=2)

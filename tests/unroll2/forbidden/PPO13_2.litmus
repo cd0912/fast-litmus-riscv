@@ -1,0 +1,19 @@
+RISCV PPO13_2
+{
+int *x = &y;
+z = 2;
+0:s0=y; 0:s1=x; 0:s2=z; 0:s3=v;
+1:t1=1; 1:s1=x; 1:s0=y;
+}
+ P0          | P1              ;
+ ld a0,0(s0) | ld a1,0(s1)     ;
+ fence rw,rw | ld a2,0(a1)     ;
+ sd s2,0(s1) | sd t1,0(s0)     ; 
+ fence rw,rw | fence rw,rw     ;
+             | addi t1,t1,1    ;
+ ld a1,0(s0) | ld a3,0(s1)     ;
+ fence rw,rw | ld a4,0(a3)     ;
+ sd s3,0(s1) | sd t1,0(s0)     ; 
+ 
+ 
+ ~exists (0:a0=1 /\ 1:a1=z) \/ (0:a0=2 /\ 1:a3=v) \/ (0:a1=1 /\ 1:a1=v) \/ (0:a1=2 /\ 1:a3=v)

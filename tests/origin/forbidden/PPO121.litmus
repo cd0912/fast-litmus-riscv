@@ -1,0 +1,13 @@
+RISCV PPO121
+{ 
+0:t1=1; 0:s0=x; 0:s1=y;
+1:t1=1; 1:s1=y; 1:s2=z; 1:s0=x
+}
+ P0          | P1              ;
+ sw t1,0(s0) | lw a0,0(s1)     ;
+ fence w,w   | sw a0,0(s2)     ;
+ sw t1,0(s1) | lw a1,0(s2)     ; 
+             | xor a2,a1,a1    ;
+             | add s0,s0,a2    ;
+             | lw a3,0(s0)     ;
+~exists (1:a0=1 /\ 1:a3=0)
