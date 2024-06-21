@@ -1,8 +1,6 @@
 RDW_2.litmus
 ISA2+fence.w.w+fence.r.w+fence.r.r_2.litmus
 RWC+fence.r.r+fence.w.r_2.litmus
-PPO121_2.litmus          
+PPO121_2.litmus
 WRC+fence.r.w+fence.r.r_2.litmus
 PPO13_2.litmus
-
-
