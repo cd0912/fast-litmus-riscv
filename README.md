@@ -84,3 +84,35 @@ make clean
 ```
 
 See README-old.md for more details.
+
+
+Simulating on Herd
+=================================
+
+Simulating litmus tests on Herd, do
+
+```bash
+herd7 -model ./model/riscv.cat -I ./model/<DIR_TO_MODEL>/ ./tests/<PATH_TO_LITMUS>
+```
+
+For example:
+
+```bash
+herd7 -model ./model/riscv.cat -I ./model/rvwmo/ ./tests/origin/allow/PPO122.litmus
+```
+
+Litmus Verification
+==================================
+
+To verify the correctness of the fast litmus tests, do
+
+```bash
+make verify-<Type: allow|forbidden>-<name>
+```
+
+For example:
+
+```bash
+make verify-allow-SB
+make verify-forbidden-PPO13
+```

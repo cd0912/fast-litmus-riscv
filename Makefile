@@ -13,6 +13,11 @@ ATFILE ?= tests/@all
 # The following targets are usable even if you do not have the models
 # (i.e. they do not trigger rebuild of the model logs)
 
+verify-allow-%:
+	@python3 tools/verify.py allow $*
+
+verify-forbidden-%:
+	@python3 tools/verify.py forbidden $*
 
 # 'make show-test TEST=<name>' where <name> is a litmus test name
 # (e.g. MP) shows the litmus test and the model results for it

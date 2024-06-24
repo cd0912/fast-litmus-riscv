@@ -2,7 +2,7 @@
 /model-results/herd
 flat-tests.d
 herd-tests.d
-
+/model-results/**
 /hw-tests
 /hw-tests-src
 /gcc-tests
